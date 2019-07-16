@@ -6,12 +6,10 @@ import java.sql.SQLException;
 
 public class DBHandler {
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getConnection() throws SQLException {
         String connectionUrl = "jdbc:mysql://localhost:3306/parsing?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String name = "root";
-        String password = "Keklolprekol123";
 
-        Connection connection = DriverManager.getConnection(connectionUrl, name, password);
+        Connection connection = DriverManager.getConnection(connectionUrl, DBConfig.NAME, DBConfig.PASSWORD);
         return connection;
     }
 }
