@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 
 public class Headings {
-    public HashSet<String> getAllHeadings() throws SQLException, ClassNotFoundException {
+    public static HashSet<String> getAllHeadings() throws SQLException, ClassNotFoundException {
         HashSet<String> headings = new HashSet<String>();
         String select = "SELECT * FROM headings";
 

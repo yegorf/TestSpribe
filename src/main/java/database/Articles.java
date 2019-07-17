@@ -3,7 +3,10 @@ package database;
 import entities.Article;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
 
 public class Articles {
     public static void addArticle(Article article) throws SQLException, ClassNotFoundException {
@@ -14,9 +17,28 @@ public class Articles {
 
         statement.setString(1, article.getAuthor());
         statement.setString(2, article.getTopic());
-        statement.setString(3, article.getContent());
+        statement.setString(3, article.getContent().toString());
         statement.setString(4, article.getDateTime());
 
         statement.executeUpdate();
+    }
+
+    public static HashSet<Article> getAll() throws SQLException {
+        HashSet<Article> articles = new HashSet<Article>();
+
+        String select = "SELECT * FROM articles";
+        Statement statement = DBHandler.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(select);
+
+        while (resultSet.next()) {
+            Article article = new Article();
+            article.setAuthor(resultSet.getString(2));
+            article.setDateTime(resultSet.getString(5));
+            article.setTopic(resultSet.getString(3));
+            article.setContent(new StringBuffer(resultSet.getString(4)));
+            articles.add(article);
+        }
+
+        return articles;
     }
 }
