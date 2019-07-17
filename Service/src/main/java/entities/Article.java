@@ -14,10 +14,6 @@ public class Article {
     private StringBuffer content = new StringBuffer();
     private String views;
 
-    public void addContent(String text) {
-        content.append(text).append("\n");
-    }
-
     @Override
     public String toString() {
         return "Author: " + author + "\n"

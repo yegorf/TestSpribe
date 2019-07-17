@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Articles {
-    public static void addArticle(Article article) throws SQLException, ClassNotFoundException {
+    public static synchronized void addArticle(Article article) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO articles(author, topic, content, date_time)" +
                 "VALUES(?,?,?,?)";
 

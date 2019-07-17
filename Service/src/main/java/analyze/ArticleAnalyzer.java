@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class ArticleAnalyzer {
     private static HashMap<String, Integer> words = new HashMap<>();
 
-    public static void analyze(String word) {
+    public static synchronized void analyze(String word) {
         if (words.containsKey(word)) {
             words.put(word, words.get(word) + 1);
         } else {

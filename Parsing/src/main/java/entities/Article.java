@@ -14,12 +14,12 @@ public class Article {
     private StringBuffer content = new StringBuffer();
     private String views;
 
-    public void addContent(String text) {
+    public synchronized void addContent(String text) {
         content.append(text).append("\n");
     }
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return "Author: " + author + "\n"
                 + "Date and time: " + dateTime + "\n"
                 + "Views: " + views + "\n"

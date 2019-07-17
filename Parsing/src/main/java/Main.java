@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import java.util.HashSet;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
         HashSet<String> headings = Headings.getAllHeadings();
-        ParsingThread[] threads = new ParsingThread[5];
+        Thread[] threads = new Thread[5];
 
         int i = 0;
-        for (String h : headings) {
-            threads[i] = new ParsingThread(h);
+        for (String heading : headings) {
+            threads[i] = new Thread(new ParsingThread(heading));
             i++;
         }
-
-        for (ParsingThread parsingThread : threads) {
-            new Thread(parsingThread).start();
+        for (Thread thread : threads) {
+            thread.start();
+            thread.join();
         }
     }
 }

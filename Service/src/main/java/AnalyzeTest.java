@@ -8,18 +8,18 @@ import java.util.ArrayList;
 
 public class AnalyzeTest {
     public static void main(String[] args) throws SQLException, InterruptedException {
-        ArrayList<Article> articles = Articles.getAll(); //Берем все статьи из базы
+        ArrayList<Article> articles = Articles.getAll();
         ArrayList<Thread> threads = new ArrayList<>();
 
         for (Article article : articles) {
-            threads.add(new Thread(new ReadingThread(article.getContent().toString()))); //Для каждой статьи создаем поток и передаем в него тело статьи
+            threads.add(new Thread(new ReadingThread(article.getContent().toString())));
         }
         for (Thread thread : threads) {
             thread.start();
             thread.join();
         }
 
-        String word = "на";
+        String word = "на"; //Write any word to get info
         System.out.println("Count of " + word + " = " + ArticleAnalyzer.getCount(word));
     }
 }

@@ -3,12 +3,14 @@ package threads;
 
 import database.Articles;
 import entities.Article;
+import lombok.Data;
 import parsers.UrlParser;
 import parsing.MainParser;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
+@Data
 public class ParsingThread implements Runnable {
     private String url;
 
@@ -17,20 +19,18 @@ public class ParsingThread implements Runnable {
     }
 
     public void run() {
-        System.out.println("Started " + Thread.currentThread().getName() + " article: " + url);
         Article article = null;
         try {
             article = new MainParser().parseCategoryLastTopic(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " ended");
-        System.out.println(article);
         try {
             assert article != null;
             Articles.addArticle(article);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println(article);
     }
 }
