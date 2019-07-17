@@ -1,4 +1,4 @@
-package database;
+package db;
 
 import entities.Article;
 
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Articles {
     public static void addArticle(Article article) throws SQLException, ClassNotFoundException {
@@ -23,8 +23,8 @@ public class Articles {
         statement.executeUpdate();
     }
 
-    public static HashSet<Article> getAll() throws SQLException {
-        HashSet<Article> articles = new HashSet<Article>();
+    public static ArrayList<Article> getAll() throws SQLException {
+        ArrayList<Article> articles = new ArrayList<Article>();
 
         String select = "SELECT * FROM articles";
         Statement statement = DBHandler.getConnection().createStatement();

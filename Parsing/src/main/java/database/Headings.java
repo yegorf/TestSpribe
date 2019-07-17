@@ -13,7 +13,7 @@ public class Headings {
         Statement statement = DBHandler.getConnection().createStatement();
         ResultSet resSet = statement.executeQuery(select);
 
-        while(resSet.next()) {
+        while (resSet.next()) {
             headings.add(resSet.getString(2));
         }
         return headings;

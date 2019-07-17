@@ -24,7 +24,7 @@ public class MainParser {
 
         for (int i = 0; i < allElements.size() - 2; i++) {
             String name;
-            if(!allElements.get(i).className().equals("")) {
+            if (!allElements.get(i).className().equals("")) {
                 name = allElements.get(i).tagName() + "." + allElements.get(i).className();
             } else {
                 name = allElements.get(i).tagName();
