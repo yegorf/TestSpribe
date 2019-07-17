@@ -8,8 +8,6 @@ public class DBHandler {
 
     public static synchronized Connection getConnection() throws SQLException {
         String connectionUrl = "jdbc:mysql://localhost:3306/parsing?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
-        Connection connection = DriverManager.getConnection(connectionUrl, DBConfig.NAME, DBConfig.PASSWORD);
-        return connection;
+        return DriverManager.getConnection(connectionUrl, DBConfig.NAME, DBConfig.PASSWORD);
     }
 }

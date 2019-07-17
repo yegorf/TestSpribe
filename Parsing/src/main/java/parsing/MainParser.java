@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class MainParser {
 
-    public synchronized Article parseCategoryLastTopic(String url) throws IOException {
+    public Article parseCategoryLastTopic(String url) throws IOException {
         Document document = Jsoup.connect(url).userAgent("Mozilla").get();
 
         Element htmlElement = document.select("div.post-content").get(0);
